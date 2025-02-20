@@ -596,9 +596,10 @@ header {
 			position: absolute;
 			top: 60px;
 			right: 0;
-			width: 70%;
+			width: 100%;
 			box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 			padding: 10px 0;
+			line-height: 20px;
 		}
 
 		.nav-content.active {
@@ -611,6 +612,9 @@ header {
 			background-color: #f9f9f9;
 			width: 100%;
 			box-shadow: none;
+		}
+		.dropdown-content {
+			line-height: 15px;
 		}
 
 		.dropdown.show {
