@@ -1,233 +1,281 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>PAWMBLE</title>
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-		<link rel="stylesheet" href="../bootstrap-5.1.3-dist/css/bootstrap.css" />
-		<script src="../bootstrap-5.1.3-dist/js/bootstrap.js"></script>
-		<link rel="stylesheet" href="pawmble_main.css" />
-	</head>
-	<body>
-		<header>
-			<nav class="navbar">
-				<div class="logo"><img src="LOGO.jpg" class="img-logo" /><a href="./pawmble_main.html" class="pawmble">Pawmble</a></div>
-				<div class="menu-icon">
-					<a href="#" class="icon-link"><i class="fa fa-bars"></i></a>
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>PAWMBLE</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+		crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="pawmble_main.css" />
+	<script>
+		document.addEventListener("DOMContentLoaded", function () {
+			const menuIcon = document.querySelector(".menu-icon");
+			const navContent = document.querySelector(".nav-content");
+			const dropdownBtns = document.querySelectorAll(".nav-item .nav-link");
+
+			// Toggle menu khi click icon
+			menuIcon.addEventListener("click", function (event) {
+				event.stopPropagation(); // Ngăn chặn sự kiện click lan ra ngoài
+				navContent.classList.toggle("active");
+			});
+
+			// Toggle dropdown khi click vào các mục có submenu
+			dropdownBtns.forEach((btn) => {
+				btn.addEventListener("click", function (event) {
+					event.preventDefault(); // Ngăn chặn link chuyển trang
+					event.stopPropagation(); // Ngăn chặn click lan ra ngoài
+					let dropdownMenu = this.nextElementSibling;
+					if (dropdownMenu && dropdownMenu.classList.contains("dropdown")) {
+						dropdownMenu.classList.toggle("show");
+					}
+				});
+			});
+
+			// Ẩn menu nếu click ra ngoài
+			document.addEventListener("click", function (event) {
+				if (!navContent.contains(event.target) && !menuIcon.contains(event.target)) {
+					navContent.classList.remove("active");
+					document.querySelectorAll(".dropdown.show").forEach((dropdown) => {
+						dropdown.classList.remove("show");
+					});
+				}
+			});
+		});
+	</script>
+
+
+
+</head>
+
+<body>
+	<header>
+		<nav class="navbar">
+			<div class="logo"><img src="LOGO.jpg" class="img-logo" /><a href="./pawmble_main.html"
+					class="pawmble">Pawmble</a></div>
+			<div class="menu-icon">
+				<a href="#" class="icon-link"><i class="fa fa-bars"></i></a>
+			</div>
+			<ul class="nav-content">
+				<li class="nav-item">
+					<a href="" class="nav-link">The Shop</a>
+				</li>
+				<li class="nav-item">
+					<a href="" class="nav-link">The App <i class="fa fa-caret-down" aria-hidden="true"></i></a>
+					<ul class="dropdown">
+						<li class="dropdown-content">
+							<a href="./pawmble_date.html" class="dropdown-link">Pawmble Date</a>
+						</li>
+						<li class="dropdown-content">
+							<a href="" class="dropdown-link">Pawmble BFF</a>
+						</li>
+						<li class="dropdown-content">
+							<a href="" class="dropdown-link">Pawmble Bizz</a>
+						</li>
+					</ul>
+				</li>
+				<li class="nav-item">
+					<a href="" class="nav-link">Ambassadors</a>
+				</li>
+				<li class="nav-item">
+					<a href="" class="nav-link">Events</a>
+				</li>
+				<li class="nav-item">
+					<a href="" class="nav-link">The Buzz</a>
+				</li>
+				<li class="nav-item">
+					<a href="" class="nav-link">About</a>
+				</li>
+			</ul>
+		</nav>
+	</header>
+
+	<main class="main">
+		<section class="section1">
+			<div class="image">
+				<img src="section1.jpg" class="img1" />
+				<div class="text-overlay">
+					<h1 class="img1-text1">MAKE THE NEXT MOVE</h1>
+					<div class="qr-code">
+						<img src="QR.png" alt="QR CODE" />
+					</div>
+					<p class="img1-text2">It's better on the app</p>
+					<button class="download-btn">Download now</button>
 				</div>
-				<ul class="nav-content">
-					<li class="nav-item">
-						<a href="" class="nav-link">The Shop</a>
-					</li>
-					<li class="nav-item">
-						<a href="" class="nav-link">The App <i class="fa fa-caret-down" aria-hidden="true"></i></a>
-						<ul class="dropdown">
-							<li class="dropdown-content">
-								<a href="./pawmble_date.html" class="dropdown-link">Pawmble Date</a>
-							</li>
-							<li class="dropdown-content">
-								<a href="" class="dropdown-link">Pawmble BFF</a>
-							</li>
-							<li class="dropdown-content">
-								<a href="" class="dropdown-link">Pawmble Bizz</a>
-							</li>
-						</ul>
-					</li>
-					<li class="nav-item">
-						<a href="" class="nav-link">Ambassadors</a>
-					</li>
-					<li class="nav-item">
-						<a href="" class="nav-link">Events</a>
-					</li>
-					<li class="nav-item">
-						<a href="" class="nav-link">The Buzz</a>
-					</li>
-					<li class="nav-item">
-						<a href="" class="nav-link">About</a>
-					</li>
-				</ul>
-			</nav>
-		</header>
+			</div>
 
-		<main class="main">
-			<section class="section1">
-				<div class="image">
-					<img src="section1.jpg" class="img1" />
-					<div class="text-overlay">
-						<h1 class="img1-text1">MAKE THE NEXT MOVE</h1>
-						<div class="qr-code">
-							<img src="QR.png" alt="QR CODE" />
-						</div>
-						<p class="img1-text2">It's better on the app</p>
-						<button class="download-btn">Download now</button>
-					</div>
+			<div class="page2">
+				<div class="text-section">
+					<h1>BRING YOUR BAR BACK UP TO WHERE IT BELONGS</h1>
+					<p>You deserve better, so we've designed great ways for you to date more and stress less.</p>
+					<button>See What's new</button>
 				</div>
-
-				<div class="page2">
-					<div class="text-section">
-						<h1>BRING YOUR BAR BACK UP TO WHERE IT BELONGS</h1>
-						<p>You deserve better, so we've designed great ways for you to date more and stress less.</p>
-						<button>See What's new</button>
-					</div>
-					<div class="image-section">
-						<img src="section2.jpg" alt="image" />
-					</div>
+				<div class="image-section">
+					<img src="section2.jpg" alt="image" />
 				</div>
+			</div>
 
-				<div class="page3">
-					<h1>WE'RE NOT JUST FOR DATING</h1>
-					<div class="img-section2">
-						<div class="gallery">
-							<img src="section3.jpg" alt="img1" />
-							<p class="gallery-item1">Meet someone with Pawmble Date</p>
-							<p class="gallery-item2">
-								Find someone you actually want to date, then go ahead and Make the First Move. Make genuine connections, vibe over what you both love,
-								and most importantly, have fun.
-							</p>
-						</div>
-
-						<div class="gallery">
-							<img src="section4.jpg" alt="img2" />
-							<p class="gallery-item1">Find new friends on Pawmble For Friends</p>
-							<p class="gallery-item2">
-								Meet someone like you. Or unlike you. Make new friends and find new things to do together — whether you’re home or away.
-							</p>
-						</div>
-
-						<div class="gallery">
-							<img src="section5.jpg" alt="img3" />
-							<p class="gallery-item1">Make career moves with Pawmble Bizz</p>
-							<p class="gallery-item2">
-								Find friends with work benefits. Connect with other business professionals to find your next job, a mentor or even a whole new career.
-							</p>
-						</div>
-					</div>
-				</div>
-
-				<div class="page4">
-					<div class="image-section3">
-						<img src="section2.1.jpg" alt="image" />
-					</div>
-					<div class="text-section2">
-						<h1>Make the first move™</h1>
-						<p>
-							We’re the only app that makes dating better by putting women’s experiences first. Because when things are better for women, they’re
-							better for everyone.
+			<div class="page3">
+				<h1>WE'RE NOT JUST FOR DATING</h1>
+				<div class="img-section2">
+					<div class="gallery">
+						<img src="section3.jpg" alt="img1" />
+						<p class="gallery-item1">Meet someone with Pawmble Date</p>
+						<p class="gallery-item2">
+							Find someone you actually want to date, then go ahead and Make the First Move. Make genuine
+							connections, vibe over what you both love,
+							and most importantly, have fun.
 						</p>
-						<button>About Bumble</button>
 					</div>
-				</div>
 
-				<div class="page5">
-					<h1>IF IT WORKED FOR THEM, IT COULD WORK FOR YOU</h1>
-					<div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
-						<div class="carousel-indicators">
-							<button
-								type="button"
-								data-bs-target="#carouselExampleDark"
-								data-bs-slide-to="0"
-								class="active"
-								aria-current="true"
-								aria-label="Slide 1"
-							></button>
-							<button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
-							<button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
-						</div>
-						<div class="carousel-inner">
-							<div class="carousel-item active" data-bs-interval="10000">
-								<img src="section6.jpeg" class="d-block w-100" alt="Image1" />
-								<div class="carousel-caption d-none d-md-block">
-									<h5>Where love begins?</h5>
-									<p>Meet new paws on Pawmble.</p>
-								</div>
-							</div>
-							<div class="carousel-item" data-bs-interval="2000">
-								<img src="section7.webp" class="d-block w-100" alt="Image3" />
-								<div class="carousel-caption d-none d-md-block">
-									<h5>Where love begins?</h5>
-									<p>Meet new paws on Pawmble.</p>
-								</div>
-							</div>
-							<div class="carousel-item">
-								<img src="section8.webp" class="d-block w-100" alt="Image3" />
-								<div class="carousel-caption d-none d-md-block">
-									<h5>Where love begins?</h5>
-									<p>Meet new paws on Pawmble.</p>
-								</div>
-							</div>
-						</div>
-						<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-							<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-							<span class="visually-hidden">Previous</span>
-						</button>
-						<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
-							<span class="carousel-control-next-icon" aria-hidden="true"></span>
-							<span class="visually-hidden">Next</span>
-						</button>
+					<div class="gallery">
+						<img src="section4.jpg" alt="img2" />
+						<p class="gallery-item1">Find new friends on Pawmble For Friends</p>
+						<p class="gallery-item2">
+							Meet someone like you. Or unlike you. Make new friends and find new things to do together —
+							whether you’re home or away.
+						</p>
 					</div>
-				</div>
-			</section>
-		</main>
 
-		<footer>
-			<div class="footer">
-				<div class="footer-top">
-					<div class="footer-content-btn">
-						<select class="language-btn">
-							<option>English (United Kingdom)</option>
-							<option>English (United States)</option>
-							<option>Español (España)</option>
-							<option>Français</option>
-							<option>Italiano</option>
-							<option>中國 (財政)</option>
-							<option>日本語</option>
-							<option>한국인</option>
-							<option>Việt Nam</option>
-						</select>
-						<button type="button" class="sign_in-btn">Sign In</button>
-					</div>
-					<div class="footer-content-download">
-						<img src="appstore.webp" alt="" class="download-img" />
-						<img src="googleplay.webp" alt="" class="download-img" />
-						<p>Apple and the Apple Logo are trademarks of Apple Inc. Google Play and the Google Play logo are trademarks of Google LLC.</p>
-					</div>
-				</div>
-				<div class="hr"></div>
-				<div class="footer-bottom">
-					<div class="footer-item-1">
-						<div class="footer-content-1">
-							<a href="" class="footer-link">FAQ</a>
-							<a href="" class="footer-link">Events</a>
-							<a href="" class="footer-link">Contact us</a>
-							<a href="" class="footer-link">Guidelines</a>
-						</div>
-						<div class="footer-content-2">
-							<a href="" class="footer-link">Modern Slavery Act Statement</a>
-							<a href="" class="footer-link">Notice At Collection</a>
-							<a href="" class="footer-link">Accessibility at Pawmble</a>
-							<a href="" class="footer-link">Terms and conditions</a>
-							<a href="" class="footer-link">Privacy policy</a>
-							<a href="" class="footer-link">Manage cookies</a>
-							<a href="" class="footer-link">Viet Nam Consumer Health Data Privacy Policy</a>
-							<a href="" class="footer-link">Careers</a>
-							<a href="" class="footer-link">Investors</a>
-							<a href="" class="footer-link">Seasonal Dating Guides</a>
-						</div>
-					</div>
-					<div class="footer-item-2">
-						<div class="footer-apps_icon">
-							<a href="" class="icon-link"><i class="fa fa-facebook-square" aria-hidden="true"></i> </a>
-							<a href="" class="icon-link"><i class="fa fa-linkedin-square" aria-hidden="true"></i> </a>
-							<a href="" class="icon-link"><i class="fa fa-instagram" aria-hidden="true"></i> </a>
-							<a href="" class="icon-link"><i class="fa fa-twitter" aria-hidden="true"></i> </a>
-							<a href="" class="icon-link"><i class="fa fa-pinterest" aria-hidden="true"></i> </a>
-							<a href="" class="icon-link"><i class="fa fa-youtube-play" aria-hidden="true"></i> </a>
-						</div>
-						<p>Copyright © 2006 – present. Pawmble. All rights reserved.</p>
+					<div class="gallery">
+						<img src="section5.jpg" alt="img3" />
+						<p class="gallery-item1">Make career moves with Pawmble Bizz</p>
+						<p class="gallery-item2">
+							Find friends with work benefits. Connect with other business professionals to find your next
+							job, a mentor or even a whole new career.
+						</p>
 					</div>
 				</div>
 			</div>
-		</footer>
-	</body>
+
+			<div class="page4">
+				<div class="image-section3">
+					<img src="section2.1.jpg" alt="image" />
+				</div>
+				<div class="text-section2">
+					<h1>Make the first move™</h1>
+					<p>
+						We’re the only app that makes dating better by putting women’s experiences first. Because when
+						things are better for women, they’re
+						better for everyone.
+					</p>
+					<button>About Bumble</button>
+				</div>
+			</div>
+
+			<div class="page5">
+				<h1>IF IT WORKED FOR THEM, IT COULD WORK FOR YOU</h1>
+				<div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+					<div class="carousel-indicators">
+						<button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active"
+							aria-current="true" aria-label="Slide 1"></button>
+						<button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1"
+							aria-label="Slide 2"></button>
+						<button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2"
+							aria-label="Slide 3"></button>
+					</div>
+					<div class="carousel-inner">
+						<div class="carousel-item active" data-bs-interval="10000">
+							<img src="section6.jpeg" class="d-block w-100" alt="Image1" />
+							<div class="carousel-caption d-none d-md-block">
+								<h5>Where love begins?</h5>
+								<p>Meet new paws on Pawmble.</p>
+							</div>
+						</div>
+						<div class="carousel-item" data-bs-interval="2000">
+							<img src="section7.webp" class="d-block w-100" alt="Image3" />
+							<div class="carousel-caption d-none d-md-block">
+								<h5>Where love begins?</h5>
+								<p>Meet new paws on Pawmble.</p>
+							</div>
+						</div>
+						<div class="carousel-item">
+							<img src="section8.webp" class="d-block w-100" alt="Image3" />
+							<div class="carousel-caption d-none d-md-block">
+								<h5>Where love begins?</h5>
+								<p>Meet new paws on Pawmble.</p>
+							</div>
+						</div>
+					</div>
+					<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark"
+						data-bs-slide="prev">
+						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">Previous</span>
+					</button>
+					<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark"
+						data-bs-slide="next">
+						<span class="carousel-control-next-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">Next</span>
+					</button>
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<footer>
+		<div class="footer">
+			<div class="footer-top">
+				<div class="footer-content-btn">
+					<select class="language-btn">
+						<option>English (United Kingdom)</option>
+						<option>English (United States)</option>
+						<option>Español (España)</option>
+						<option>Français</option>
+						<option>Italiano</option>
+						<option>中國 (財政)</option>
+						<option>日本語</option>
+						<option>한국인</option>
+						<option>Việt Nam</option>
+					</select>
+					<button type="button" class="sign_in-btn">Sign In</button>
+				</div>
+				<div class="footer-content-download">
+					<img src="appstore.webp" alt="" class="download-img" />
+					<img src="googleplay.webp" alt="" class="download-img" />
+					<p>Apple and the Apple Logo are trademarks of Apple Inc. Google Play and the Google Play logo are
+						trademarks of Google LLC.</p>
+				</div>
+			</div>
+			<div class="hr"></div>
+			<div class="footer-bottom">
+				<div class="footer-item-1">
+					<div class="footer-content-1">
+						<a href="" class="footer-link">FAQ</a>
+						<a href="" class="footer-link">Events</a>
+						<a href="" class="footer-link">Contact us</a>
+						<a href="" class="footer-link">Guidelines</a>
+					</div>
+					<div class="footer-content-2">
+						<a href="" class="footer-link">Modern Slavery Act Statement</a>
+						<a href="" class="footer-link">Notice At Collection</a>
+						<a href="" class="footer-link">Accessibility at Pawmble</a>
+						<a href="" class="footer-link">Terms and conditions</a>
+						<a href="" class="footer-link">Privacy policy</a>
+						<a href="" class="footer-link">Manage cookies</a>
+						<a href="" class="footer-link">Viet Nam Consumer Health Data Privacy Policy</a>
+						<a href="" class="footer-link">Careers</a>
+						<a href="" class="footer-link">Investors</a>
+						<a href="" class="footer-link">Seasonal Dating Guides</a>
+					</div>
+				</div>
+				<div class="footer-item-2">
+					<div class="footer-apps_icon">
+						<a href="" class="icon-link"><i class="fa fa-facebook-square" aria-hidden="true"></i> </a>
+						<a href="" class="icon-link"><i class="fa fa-linkedin-square" aria-hidden="true"></i> </a>
+						<a href="" class="icon-link"><i class="fa fa-instagram" aria-hidden="true"></i> </a>
+						<a href="" class="icon-link"><i class="fa fa-twitter" aria-hidden="true"></i> </a>
+						<a href="" class="icon-link"><i class="fa fa-pinterest" aria-hidden="true"></i> </a>
+						<a href="" class="icon-link"><i class="fa fa-youtube-play" aria-hidden="true"></i> </a>
+					</div>
+					<p>Copyright © 2006 – present. Pawmble. All rights reserved.</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+</body>
+
 </html>
